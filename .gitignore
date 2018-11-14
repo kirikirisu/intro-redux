@@ -1,7 +1,11 @@
-node_modules/**/*
-.expo/*
-npm-debug.*
-*.jks
-*.p12
-*.key
-*.mobileprovision
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# idea
+.idea/
+
+# macOS
+.DS_Store
+
