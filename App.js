@@ -4,8 +4,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { AddForm } from './component/addform'
-import { List } from './component/list'
+import { AddForm } from './component/addform';
+import { List } from './component/list';
 
 export default class App extends Component {
   static STORAGE_KEY = '@RememberTheCheese:items';
@@ -25,9 +25,9 @@ export default class App extends Component {
     if (json !== null) {
       const items = JSON.parse(json);
       this.setState({
-        items: items,
+        items,
         loaded: true,
-      })
+      });
     }
   }
 
@@ -38,25 +38,23 @@ export default class App extends Component {
     if (text.length === 0) {
       return;
     }
-    items.push({key: Date.now(), value: text});
+    items.push({ key: Date.now(), value: text });
     this.setState({
       text: '',
-      items: items,
+      items,
     });
     AsyncStorage.setItem(App.STORAGE_KEY, JSON.stringify(items));
   }
 
   _onChange(text) {
-    this.setState({text: text});
+    this.setState({ text });
   }
 
   _deleteItem(item) {
-    const items = this.state.items.filter((element, index, array) => {
-      return element.key !== item.key;
-    });
+    const items = this.state.items.filter((element, index, array) => element.key !== item.key);
 
     this.setState({
-      items: items,
+      items,
     });
     AsyncStorage.setItem(App.STORAGE_KEY, JSON.stringify(items));
   }
@@ -64,12 +62,16 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AddForm value={this.state.text}
+        <AddForm
+          value={this.state.text}
           onChangeText={this._onChange.bind(this)}
           onPress={this._addItem.bind(this)}
-          disabled={this.state.loaded && this.state.text.length == 0} />
-        <List items={this.state.items}
-          deleteItem={this._deleteItem.bind(this)} />
+          disabled={this.state.loaded && this.state.text.length == 0}
+        />
+        <List
+          items={this.state.items}
+          deleteItem={this._deleteItem.bind(this)}
+        />
       </View>
     );
   }

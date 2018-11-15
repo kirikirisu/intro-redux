@@ -8,14 +8,16 @@ import {
 } from 'react-native';
 
 export class List extends Component {
-  _renderItem({item}) {
+  _renderItem({ item }) {
     return (
       <View style={styles.container}>
         <Text style={styles.item}>{item.value}</Text>
-        <TouchableOpacity style={styles.delete}
+        <TouchableOpacity
+          style={styles.delete}
           onPress={() => {
             this.props.deleteItem(item);
-          }}>
+          }}
+        >
           <Text style={styles.deleteText}>DONE</Text>
         </TouchableOpacity>
       </View>
@@ -24,9 +26,11 @@ export class List extends Component {
 
   render() {
     return (
-      <FlatList data={this.props.items}
+      <FlatList
+        data={this.props.items}
         extraData={this.props.items.length}
-        renderItem={this._renderItem.bind(this)} />
+        renderItem={this._renderItem.bind(this)}
+      />
     );
   }
 }
