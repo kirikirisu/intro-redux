@@ -40,7 +40,7 @@ export default class App extends Component {
 
   _onChange = (text) => {
     this.setState({ text });
-  }
+  };
 
   _addItem = () => {
     const {
@@ -57,7 +57,7 @@ export default class App extends Component {
       items,
     });
     AsyncStorage.setItem(App.STORAGE_KEY, JSON.stringify(items));
-  }
+  };
 
   _deleteItem = (item) => {
     const { items } = this.state;
@@ -67,7 +67,7 @@ export default class App extends Component {
       items: filtered,
     });
     AsyncStorage.setItem(App.STORAGE_KEY, JSON.stringify(items));
-  }
+  };
 
   render() {
     const {
