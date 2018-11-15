@@ -10,6 +10,18 @@
           ".jsx"
         ]
       }
+    ],
+    "no-underscore-dangle": [
+      2,
+      {
+        "allowAfterThis": true
+      }
+    ],
+    "react/prop-types": [
+      0
+    ],
+    "object-curly-newline": [
+      0
     ]
   }
 }

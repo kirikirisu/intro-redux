@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddForm = (value, onChangeText, onPress, disabled) => (
+const AddForm = ({ value, onChangeText, onPress, disabled }) => (
   <View>
     <TextInput
       style={styles.input}
