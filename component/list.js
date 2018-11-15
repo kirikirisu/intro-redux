@@ -7,30 +7,6 @@ import {
   View,
 } from 'react-native';
 
-export class List extends Component {
-  _renderItem({item}) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.item}>{item.value}</Text>
-        <TouchableOpacity style={styles.delete}
-          onPress={() => {
-            this.props.deleteItem(item);
-          }}>
-          <Text style={styles.deleteText}>DONE</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
-  render() {
-    return (
-      <FlatList data={this.props.items}
-        extraData={this.props.items.length}
-        renderItem={this._renderItem.bind(this)} />
-    );
-  }
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -51,3 +27,35 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
+
+
+export default class List extends Component {
+  _renderItem = ({ item }) => {
+    const { deleteItem } = this.props;
+    return (
+      <View style={styles.container}>
+        <Text style={styles.item}>{item.value}</Text>
+        <TouchableOpacity
+          style={styles.delete}
+          onPress={() => {
+            deleteItem(item);
+          }}
+        >
+          <Text style={styles.deleteText}>DONE</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  render() {
+    const { items } = this.props;
+
+    return (
+      <FlatList
+        data={items}
+        extraData={items.length}
+        renderItem={this._renderItem}
+      />
+    );
+  }
+}

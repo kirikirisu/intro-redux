@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,23 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
-export class AddForm extends Component {
-  render() {
-    return (
-      <View>
-        <TextInput style={styles.input}
-          value={this.props.value}
-          onChangeText={this.props.onChangeText} />
-        <TouchableOpacity style={styles.addButton}
-          onPress={this.props.onPress}
-          disabled={this.props.disabled}>
-          <Text style={styles.addButtonText}>ADD</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   input: {
@@ -41,3 +24,22 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
+
+const AddForm = ({ value, onChangeText, onPress, disabled }) => (
+  <View>
+    <TextInput
+      style={styles.input}
+      value={value}
+      onChangeText={onChangeText}
+    />
+    <TouchableOpacity
+      style={styles.addButton}
+      onPress={onPress}
+      disabled={disabled}
+    >
+      <Text style={styles.addButtonText}>ADD</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+export default AddForm;
