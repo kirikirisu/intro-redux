@@ -8,7 +8,7 @@ export const getData = async () => {
   let value = [];
   try {
     const json = await AsyncStorage.getItem(STORAGE_KEY);
-    if (json !== null) {
+    if (Array.isArray(json)) {
       value = JSON.parse(json);
     }
   } catch (e) {

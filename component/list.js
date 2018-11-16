@@ -54,7 +54,6 @@ export default class List extends Component {
       <FlatList
         data={items}
         extraData={items.length}
-        keyExtractor={item => item.key.toString()}
         renderItem={this._renderItem}
       />
     );
