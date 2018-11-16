@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
-  AsyncStorage,
   StyleSheet,
   View,
 } from 'react-native';
 import AddForm from './component/addform';
 import List from './component/list';
+import { getData, storeData } from './util/storage';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,8 +15,6 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends Component {
-  static STORAGE_KEY = '@RememberTheCheese:items';
-
   constructor(props) {
     super(props);
     this.state = {
@@ -27,20 +25,17 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
-    const json = await AsyncStorage.getItem(App.STORAGE_KEY);
+    const items = await getData();
 
-    if (json !== null) {
-      const items = JSON.parse(json);
-      this.setState({
-        items,
-        loaded: true,
-      });
-    }
+    this.setState({
+      items,
+      loaded: true,
+    });
   }
 
   _onChange = (text) => {
     this.setState({ text });
-  }
+  };
 
   _addItem = () => {
     const {
@@ -56,8 +51,8 @@ export default class App extends Component {
       text: '',
       items,
     });
-    AsyncStorage.setItem(App.STORAGE_KEY, JSON.stringify(items));
-  }
+    storeData(JSON.stringify(items));
+  };
 
   _deleteItem = (item) => {
     const { items } = this.state;
@@ -66,8 +61,8 @@ export default class App extends Component {
     this.setState({
       items: filtered,
     });
-    AsyncStorage.setItem(App.STORAGE_KEY, JSON.stringify(items));
-  }
+    storeData(JSON.stringify(items));
+  };
 
   render() {
     const {

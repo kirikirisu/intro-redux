@@ -45,7 +45,7 @@ export default class List extends Component {
         </TouchableOpacity>
       </View>
     );
-  }
+  };
 
   render() {
     const { items } = this.props;
