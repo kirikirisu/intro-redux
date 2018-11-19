@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
-class List extends Component {
+class TodoList extends Component {
   _renderItem = ({ item }) => {
     const { deleteItem } = this.props;
     return (
@@ -62,7 +61,7 @@ class List extends Component {
   }
 }
 
-List.propTypes = {
+TodoList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -72,4 +71,4 @@ List.propTypes = {
   deleteItem: PropTypes.func.isRequired,
 };
 
-export default List;
+export default TodoList;

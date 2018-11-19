@@ -1,8 +1,8 @@
 import React from 'react';
-import MainScreen from './component/mainScreen';
+import Todo from './component/Todo';
 
 const App = () => (
-  <MainScreen />
+  <Todo />
 );
 
 export default App;

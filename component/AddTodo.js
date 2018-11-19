@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddForm = ({ text, onChangeText, onPress, disabled }) => (
+const AddTodo = ({ text, onChangeText, onPress, disabled }) => (
   <View>
     <TextInput
       style={styles.input}
@@ -43,11 +43,11 @@ const AddForm = ({ text, onChangeText, onPress, disabled }) => (
   </View>
 );
 
-AddForm.propTypes = {
+AddTodo.propTypes = {
   text: PropTypes.string.isRequired,
   onChangeText: PropTypes.func.isRequired,
   onPress: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
 };
 
-export default AddForm;
+export default AddTodo;

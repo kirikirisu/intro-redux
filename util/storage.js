@@ -2,25 +2,26 @@ import {
   AsyncStorage,
 } from 'react-native';
 
-const STORAGE_KEY = '@RememberTheCheese:items';
+const STORAGE_KEY = '@RememberTheCheese:item';
 
 export const getData = async () => {
-  let text = [];
+  let data = [];
   try {
     const json = await AsyncStorage.getItem(STORAGE_KEY);
-    if (Array.isArray(json)) {
-      text = JSON.parse(json);
+    const parseJson = JSON.parse(json);
+    if (Array.isArray(parseJson)) {
+      data = parseJson;
     }
   } catch (e) {
     console.error(e);
   }
 
-  return text;
+  return data;
 };
 
-export const storeData = async (text) => {
+export const storeData = async (data) => {
   try {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(text));
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (e) {
     console.error(e);
   }

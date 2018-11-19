@@ -3,8 +3,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import AddForm from './addform';
-import List from './list';
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
 import { getData, storeData } from '../util/storage';
 
 const styles = StyleSheet.create({
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class mainScreen extends Component {
+export default class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,8 +39,8 @@ export default class mainScreen extends Component {
 
   _addItem = () => {
     const {
-      items,
       text,
+      items,
     } = this.state;
 
     if (text.length === 0) {
@@ -52,7 +52,7 @@ export default class mainScreen extends Component {
       text: '',
       items,
     });
-    storeData(JSON.stringify(items));
+    storeData(items);
   };
 
   _deleteItem = (item) => {
@@ -73,13 +73,13 @@ export default class mainScreen extends Component {
     } = this.state;
     return (
       <View style={styles.container}>
-        <AddForm
+        <AddTodo
           text={text}
           onChangeText={this._onChange}
           onPress={this._addItem}
           disabled={loaded && text.length === 0}
         />
-        <List
+        <TodoList
           items={items}
           deleteItem={this._deleteItem}
         />
