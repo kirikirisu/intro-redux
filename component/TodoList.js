@@ -37,9 +37,7 @@ class TodoList extends Component {
         <Text style={styles.item}>{item.text}</Text>
         <TouchableOpacity
           style={styles.delete}
-          onPress={() => {
-            deleteItem(item);
-          }}
+          onPress={() => deleteItem(item)}
         >
           <Text style={styles.deleteText}>DONE</Text>
         </TouchableOpacity>

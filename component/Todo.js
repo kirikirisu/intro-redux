@@ -43,11 +43,11 @@ export default class Todo extends Component {
       items,
     } = this.state;
 
-    if (text.length === 0) {
+    if (!text.trim()) {
       return;
     }
-
     items.push({ id: Date.now().toString(), text });
+
     this.setState({
       text: '',
       items,
@@ -62,7 +62,7 @@ export default class Todo extends Component {
     this.setState({
       items: filtered,
     });
-    storeData(JSON.stringify(items));
+    storeData(items);
   };
 
   render() {
@@ -77,7 +77,7 @@ export default class Todo extends Component {
           text={text}
           onChangeText={this._onChange}
           onPress={this._addItem}
-          disabled={loaded && text.length === 0}
+          disabled={loaded && !text.trim()}
         />
         <TodoList
           items={items}

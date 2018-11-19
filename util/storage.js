@@ -2,7 +2,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 
-const STORAGE_KEY = '@RememberTheCheese:item';
+const STORAGE_KEY = '@RememberTheCheese:items';
 
 export const getData = async () => {
   let data = [];
