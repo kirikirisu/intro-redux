@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   FlatList,
   StyleSheet,
@@ -29,12 +30,12 @@ const styles = StyleSheet.create({
 });
 
 
-export default class List extends Component {
+class List extends Component {
   _renderItem = ({ item }) => {
     const { deleteItem } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.item}>{item.value}</Text>
+        <Text style={styles.item}>{item.text}</Text>
         <TouchableOpacity
           style={styles.delete}
           onPress={() => {
@@ -55,7 +56,20 @@ export default class List extends Component {
         data={items}
         extraData={items.length}
         renderItem={this._renderItem}
+        keyExtractor={item => item.id}
       />
     );
   }
 }
+
+List.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  deleteItem: PropTypes.func.isRequired,
+};
+
+export default List;

@@ -47,7 +47,7 @@ export default class mainScreen extends Component {
       return;
     }
 
-    items.push({ key: Date.now().toString(), value: text });
+    items.push({ id: Date.now().toString(), text });
     this.setState({
       text: '',
       items,
@@ -57,7 +57,7 @@ export default class mainScreen extends Component {
 
   _deleteItem = (item) => {
     const { items } = this.state;
-    const filtered = items.filter(element => element.key !== item.key);
+    const filtered = items.filter(element => element.id !== item.id);
 
     this.setState({
       items: filtered,
@@ -74,7 +74,7 @@ export default class mainScreen extends Component {
     return (
       <View style={styles.container}>
         <AddForm
-          value={text}
+          text={text}
           onChangeText={this._onChange}
           onPress={this._addItem}
           disabled={loaded && text.length === 0}

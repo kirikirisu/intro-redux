@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
@@ -25,11 +26,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddForm = ({ value, onChangeText, onPress, disabled }) => (
+const AddForm = ({ text, onChangeText, onPress, disabled }) => (
   <View>
     <TextInput
       style={styles.input}
-      value={value}
+      text={text}
       onChangeText={onChangeText}
     />
     <TouchableOpacity
@@ -41,5 +42,12 @@ const AddForm = ({ value, onChangeText, onPress, disabled }) => (
     </TouchableOpacity>
   </View>
 );
+
+AddForm.propTypes = {
+  text: PropTypes.string.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
 
 export default AddForm;
