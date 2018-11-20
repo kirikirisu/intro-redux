@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
@@ -25,12 +26,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddForm = ({ value, onChangeText, onPress, disabled }) => (
+const AddTodo = ({ text, onChangeText, onPress, disabled }) => (
   <View>
     <TextInput
       style={styles.input}
-      value={value}
+      value={text}
       onChangeText={onChangeText}
+      onSubmitEditing={onPress}
     />
     <TouchableOpacity
       style={styles.addButton}
@@ -42,4 +44,11 @@ const AddForm = ({ value, onChangeText, onPress, disabled }) => (
   </View>
 );
 
-export default AddForm;
+AddTodo.propTypes = {
+  text: PropTypes.string.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
+
+export default AddTodo;

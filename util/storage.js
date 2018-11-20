@@ -5,22 +5,23 @@ import {
 const STORAGE_KEY = '@RememberTheCheese:items';
 
 export const getData = async () => {
-  let value = [];
+  let data = [];
   try {
     const json = await AsyncStorage.getItem(STORAGE_KEY);
-    if (Array.isArray(json)) {
-      value = JSON.parse(json);
+    const parseJson = JSON.parse(json);
+    if (Array.isArray(parseJson)) {
+      data = parseJson;
     }
   } catch (e) {
     console.error(e);
   }
 
-  return value;
+  return data;
 };
 
-export const storeData = async (value) => {
+export const storeData = async (data) => {
   try {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (e) {
     console.error(e);
   }

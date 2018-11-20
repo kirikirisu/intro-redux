@@ -3,8 +3,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import AddForm from './addform';
-import List from './list';
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
 import { getData, storeData } from '../util/storage';
 
 const styles = StyleSheet.create({
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class mainScreen extends Component {
+class MainScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,36 +33,34 @@ export default class mainScreen extends Component {
     });
   }
 
-  _onChange = (text) => {
-    this.setState({ text });
-  };
+  _onChangeText = text => this.setState({ text });
 
   _addItem = () => {
     const {
-      items,
       text,
+      items,
     } = this.state;
 
-    if (text.length === 0) {
+    if (!text.trim()) {
       return;
     }
+    items.push({ id: Date.now().toString(), text });
 
-    items.push({ key: Date.now().toString(), value: text });
     this.setState({
       text: '',
       items,
     });
-    storeData(JSON.stringify(items));
+    storeData(items);
   };
 
   _deleteItem = (item) => {
     const { items } = this.state;
-    const filtered = items.filter(element => element.key !== item.key);
+    const filtered = items.filter(element => element.id !== item.id);
 
     this.setState({
       items: filtered,
     });
-    storeData(JSON.stringify(items));
+    storeData(items);
   };
 
   render() {
@@ -71,15 +69,16 @@ export default class mainScreen extends Component {
       loaded,
       items,
     } = this.state;
+
     return (
       <View style={styles.container}>
-        <AddForm
-          value={text}
-          onChangeText={this._onChange}
+        <AddTodo
+          text={text}
+          onChangeText={this._onChangeText}
           onPress={this._addItem}
-          disabled={loaded && text.length === 0}
+          disabled={loaded && !text.trim()}
         />
-        <List
+        <TodoList
           items={items}
           deleteItem={this._deleteItem}
         />
@@ -87,3 +86,5 @@ export default class mainScreen extends Component {
     );
   }
 }
+
+export default MainScreen;
