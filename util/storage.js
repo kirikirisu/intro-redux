@@ -19,10 +19,7 @@ export const getData = async () => {
   return data;
 };
 
-export const storeData = async (data) => {
-  try {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch (e) {
-    console.error(e);
-  }
+export const storeData = (data) => {
+  AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    .catch(e => console.error(e));
 };
