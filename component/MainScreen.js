@@ -33,9 +33,7 @@ export default class Todo extends Component {
     });
   }
 
-  _onChange = (text) => {
-    this.setState({ text });
-  };
+  _onChangeText = text => this.setState({ text });
 
   _addItem = () => {
     const {
@@ -49,7 +47,7 @@ export default class Todo extends Component {
     items.push({ id: Date.now().toString(), text });
 
     this.setState({
-      text: '',
+      text,
       items,
     });
     storeData(items);
@@ -75,7 +73,7 @@ export default class Todo extends Component {
       <View style={styles.container}>
         <AddTodo
           text={text}
-          onChangeText={this._onChange}
+          onChangeText={this._onChangeText}
           onPress={this._addItem}
           disabled={loaded && !text.trim()}
         />
