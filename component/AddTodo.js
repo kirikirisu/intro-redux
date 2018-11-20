@@ -30,8 +30,9 @@ const AddTodo = ({ text, onChangeText, onPress, disabled }) => (
   <View>
     <TextInput
       style={styles.input}
-      text={text}
+      value={text}
       onChangeText={onChangeText}
+      onSubmitEditing={onPress}
     />
     <TouchableOpacity
       style={styles.addButton}

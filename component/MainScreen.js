@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Todo extends Component {
+class MainScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +47,7 @@ export default class Todo extends Component {
     items.push({ id: Date.now().toString(), text });
 
     this.setState({
-      text,
+      text: '',
       items,
     });
     storeData(items);
@@ -69,6 +69,7 @@ export default class Todo extends Component {
       loaded,
       items,
     } = this.state;
+
     return (
       <View style={styles.container}>
         <AddTodo
@@ -85,3 +86,5 @@ export default class Todo extends Component {
     );
   }
 }
+
+export default MainScreen;
