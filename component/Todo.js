@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const Todo = ({ item, deleteItem }) => (
+const Todo = ({ todo, removeTodo }) => (
   <View style={styles.container}>
-    <Text style={styles.item}>{item.text}</Text>
+    <Text style={styles.item}>{todo.text}</Text>
     <TouchableOpacity
       style={styles.delete}
-      onPress={() => deleteItem(item)}
+      onPress={() => removeTodo(todo)}
     >
       <Text style={styles.deleteText}>DONE</Text>
     </TouchableOpacity>
@@ -41,11 +41,11 @@ const Todo = ({ item, deleteItem }) => (
 );
 
 Todo.propTypes = {
-  item: PropTypes.shape({
+  todo: PropTypes.shape({
     id: PropTypes.string,
     text: PropTypes.string.isRequired,
   }).isRequired,
-  deleteItem: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 };
 
 export default Todo;

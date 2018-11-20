@@ -7,38 +7,38 @@ import Todo from './Todo';
 
 class TodoList extends Component {
   _renderItem = ({ item }) => {
-    const { deleteItem } = this.props;
+    const { removeTodo } = this.props;
 
     return (
       <Todo
-        item={item}
-        deleteItem={deleteItem}
+        todo={item}
+        removeTodo={removeTodo}
       />
     );
   };
 
   render() {
-    const { items } = this.props;
+    const { todos } = this.props;
 
     return (
       <FlatList
-        data={items}
-        extraData={items.length}
+        data={todos}
+        extraData={todos.length}
         renderItem={this._renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={todo => todo.id}
       />
     );
   }
 }
 
 TodoList.propTypes = {
-  items: PropTypes.arrayOf(
+  todos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       text: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  deleteItem: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;
