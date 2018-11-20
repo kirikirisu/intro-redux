@@ -60,7 +60,7 @@ class MainScreen extends Component {
     this.setState({
       todos: filtered,
     });
-    storeData(todos);
+    storeData(filtered);
   };
 
   render() {
