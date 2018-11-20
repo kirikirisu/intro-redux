@@ -19,55 +19,55 @@ class MainScreen extends Component {
     super(props);
     this.state = {
       text: '',
-      items: [],
+      todos: [],
       loaded: false,
     };
   }
 
   async componentDidMount() {
-    const items = await getData();
+    const todos = await getData();
 
     this.setState({
-      items,
+      todos,
       loaded: true,
     });
   }
 
   _onChangeText = text => this.setState({ text });
 
-  _addItem = () => {
+  _addTodo = () => {
     const {
       text,
-      items,
+      todos,
     } = this.state;
 
     if (!text.trim()) {
       return;
     }
-    items.push({ id: Date.now().toString(), text });
+    todos.push({ id: Date.now().toString(), text });
 
     this.setState({
       text: '',
-      items,
+      todos,
     });
-    storeData(items);
+    storeData(todos);
   };
 
-  _deleteItem = (item) => {
-    const { items } = this.state;
-    const filtered = items.filter(element => element.id !== item.id);
+  _removeTodo = (todo) => {
+    const { todos } = this.state;
+    const filtered = todos.filter(element => element.id !== todo.id);
 
     this.setState({
-      items: filtered,
+      todos: filtered,
     });
-    storeData(items);
+    storeData(todos);
   };
 
   render() {
     const {
       text,
       loaded,
-      items,
+      todos,
     } = this.state;
 
     return (
@@ -75,12 +75,12 @@ class MainScreen extends Component {
         <AddTodo
           text={text}
           onChangeText={this._onChangeText}
-          onPress={this._addItem}
+          onPress={this._addTodo}
           disabled={loaded && !text.trim()}
         />
         <TodoList
-          items={items}
-          deleteItem={this._deleteItem}
+          todos={todos}
+          removeTodo={this._removeTodo}
         />
       </View>
     );
