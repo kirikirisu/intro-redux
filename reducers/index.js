@@ -1,27 +1,25 @@
 import {
   ADD_TODO,
-  REMOVE_TODO
-} from "../actions/actionTypes";
+  REMOVE_TODO,
+} from '../actions/actionTypes';
 
 const initialState = [];
 
-const todos = (state = initialState, actoin) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
       return [
         ...state,
         {
-          id: actoin.id,
+          id: action.id,
           text: action.text,
         },
       ];
     case REMOVE_TODO:
-      return state.map(
-        todo => todo.id
-      );
+      return state.filter(element => element.id !== action.id);
     default:
       return state;
   }
 };
 
-export const todos;
+export default reducer;

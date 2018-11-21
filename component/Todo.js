@@ -33,7 +33,7 @@ const Todo = ({ todo, removeTodo }) => (
     <Text style={styles.item}>{todo.text}</Text>
     <TouchableOpacity
       style={styles.delete}
-      onPress={() => removeTodo(todo)}
+      onPress={() => removeTodo(todo.id)}
     >
       <Text style={styles.deleteText}>DONE</Text>
     </TouchableOpacity>

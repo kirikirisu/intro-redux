@@ -5,6 +5,7 @@ import {
 
 export const addTodo = text => ({
   type: ADD_TODO,
+  id: Date.now().toString(),
   text,
 });
 

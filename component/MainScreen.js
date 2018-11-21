@@ -3,9 +3,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import AddTodo from './AddTodo';
-import TodoList from './TodoList';
-import { getData, storeData } from '../util/storage';
+import AddTodo from '../containers/AddTodo';
+import TodoList from '../containers/TodoList';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,55 +18,14 @@ class MainScreen extends Component {
     super(props);
     this.state = {
       text: '',
-      todos: [],
-      loaded: false,
     };
-  }
-
-  async componentDidMount() {
-    const todos = await getData();
-
-    this.setState({
-      todos,
-      loaded: true,
-    });
   }
 
   _onChangeText = text => this.setState({ text });
 
-  _addTodo = () => {
-    const {
-      text,
-      todos,
-    } = this.state;
-
-    if (!text.trim()) {
-      return;
-    }
-    todos.push({ id: Date.now().toString(), text });
-
-    this.setState({
-      text: '',
-      todos,
-    });
-    storeData(todos);
-  };
-
-  _removeTodo = (todo) => {
-    const { todos } = this.state;
-    const filtered = todos.filter(element => element.id !== todo.id);
-
-    this.setState({
-      todos: filtered,
-    });
-    storeData(filtered);
-  };
-
   render() {
     const {
       text,
-      loaded,
-      todos,
     } = this.state;
 
     return (
@@ -75,13 +33,8 @@ class MainScreen extends Component {
         <AddTodo
           text={text}
           onChangeText={this._onChangeText}
-          onPress={this._addTodo}
-          disabled={loaded && !text.trim()}
         />
-        <TodoList
-          todos={todos}
-          removeTodo={this._removeTodo}
-        />
+        <TodoList />
       </View>
     );
   }

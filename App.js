@@ -1,10 +1,14 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import logger from 'redux-logger';
 import MainScreen from './component/MainScreen';
-import rootReducer from './reducers';
+import reducer from './reducers';
 
-const store = createStore(rootReducer);
+const store = createStore(
+  reducer,
+  applyMiddleware(logger),
+);
 
 const App = () => (
   <Provider store={store}>
