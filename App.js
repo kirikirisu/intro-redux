@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 import MainScreen from './component/MainScreen';
 import reducer from './reducers';
 
